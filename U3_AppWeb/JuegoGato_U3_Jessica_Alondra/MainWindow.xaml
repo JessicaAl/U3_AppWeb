@@ -9,7 +9,16 @@
     <Window.DataContext>
         <local:JuegoGato></local:JuegoGato>
     </Window.DataContext>
-
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="Visibility" Value="Visible"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VentanaPrincipalVisible}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
     <StackPanel>
         <Label>Nombre:</Label>
         <TextBox Text="{Binding NombreJugador1}"></TextBox>
@@ -33,7 +42,7 @@
                 </WrapPanel>
             </StackPanel>
         </GroupBox>
-        <Button Command="{Binding IniciarCommand}" CommandParameter="{Binding ElementName=rdbCrear, Path=IsChecked}" Name="btnConfirmar" Content="Confirmar">
+        <Button Command="{Binding ConfirmarCommand}" CommandParameter="{Binding ElementName=rdbCrear, Path=IsChecked}" Name="btnConfirmar" Content="Confirmar">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"></Setter>

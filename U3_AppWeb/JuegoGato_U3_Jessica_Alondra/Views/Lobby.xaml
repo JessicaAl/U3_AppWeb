@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="Juego del gato" Height="450" Width="800">
     <StackPanel>
-        
+        <TextBlock>
+            Usuario:
+            <TextBlock Text="{Binding NombreJugador1}"></TextBlock>
+        </TextBlock>
+        <TextBlock Text="{Binding Mensaje}" FontStyle="Italic"></TextBlock>
+        <Button IsEnabled="False" Content="Iniciar partida"></Button>
     </StackPanel>
 </Window>

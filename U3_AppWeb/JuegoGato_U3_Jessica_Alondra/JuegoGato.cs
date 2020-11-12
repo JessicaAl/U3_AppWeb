@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using JuegoGato_U3_Jessica_Alondra.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -17,7 +19,9 @@ namespace JuegoGato_U3_Jessica_Alondra
         public enum Movimiento { A1, A2, A3, B1, B2, B3, C1, C2, C3 }
         public string NombreJugador1 { get; set; } = "Jugador";
         public string NombreJugador2 { get; set; }
+
         public string IP { get; set; }
+        public bool VentanaPrincipalVisible { get; set; } = true;
 
         public byte PuntosJugador1 { get; set; }
         public byte PuntosJugador2 { get; set; }
@@ -27,7 +31,7 @@ namespace JuegoGato_U3_Jessica_Alondra
         public string Mensaje { get; set; }
 
         public ICommand SeleccionarMovimientoCommand { get; set; }
-        public ICommand IniciarCommand { get; set; }
+        public ICommand ConfirmarCommand { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         HttpListener servidor;
@@ -36,37 +40,65 @@ namespace JuegoGato_U3_Jessica_Alondra
         public JuegoGato()
         {
             currentDispatcher = Dispatcher.CurrentDispatcher;
-            IniciarCommand = new RelayCommand<bool>(IniciarPartida);
+            ConfirmarCommand = new RelayCommand<bool>(IniciarPartida);
         }
 
-        private void IniciarPartida(bool partida)
+        private void Lobby_Closing(object sender, CancelEventArgs e)
         {
-            if (partida == true)
+            VentanaPrincipalVisible = true;
+            Actualizar("VentanaPrincipalVisible");
+            if (servidor != null)
             {
-                CrearPartida();
-            }
-            else
-            {
-                ConectarPartida();
+                servidor.Stop();
+                servidor = null;
             }
         }
-
+        Lobby lobby;
+        private async void IniciarPartida(bool partida)
+        {
+            try
+            {
+                VentanaPrincipalVisible = false;
+                lobby = new Lobby();
+                lobby.Closing += Lobby_Closing;
+                lobby.DataContext = this;
+                lobby.Show();
+                Actualizar();
+                if (partida == true)
+                {
+                    CrearPartida();
+                }
+                else
+                {
+                    Mensaje = "Intentando conectar con el servidor en " + IP;
+                    Actualizar("Mensaje");
+                    await ConectarPartida();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                Actualizar();
+            }
+        }
         public void CrearPartida()
         {
             servidor = new HttpListener();
-            servidor.Prefixes.Add("http://*:1000/gato");
+            servidor.Prefixes.Add("http://*:1000/gato/");
             servidor.Start();
             servidor.BeginGetContext(OnContext, null);
             Mensaje = "Esperando a conectar con un contrincante...";
             Actualizar();
         }
-        public void ConectarPartida()
+        public async Task ConectarPartida()
         {
+            cliente = new ClientWebSocket();
+            await cliente.ConnectAsync(new Uri($"ws://{IP}:1000/gato/"), CancellationToken.None);
 
         }
         private void OnContext(IAsyncResult ar)
         {
-            throw new NotImplementedException();
+            //
         }
         void Actualizar(string propertyName = null)
         {
