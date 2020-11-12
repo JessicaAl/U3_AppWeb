@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Juego del gato" Height="232.301" Width="476.106">
+    <Window.DataContext>
+        <local:JuegoGato></local:JuegoGato>
+    </Window.DataContext>
+
+    <StackPanel>
+        <Label>Nombre:</Label>
+        <TextBox Text="{Binding NombreJugador1}"></TextBox>
+        <GroupBox Header="Seleccione que quiere hacer...">
+            <StackPanel>
+                <RadioButton Content="Crear partida nueva" x:Name="rdbCrear" IsChecked="True"></RadioButton>
+                <RadioButton Content="Unirse a partida" x:Name="rdbUnirse"></RadioButton>
+                <WrapPanel Name="ipJugador2">
+                    <WrapPanel.Style>
+                        <Style TargetType="WrapPanel">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </WrapPanel.Style>
+                    <TextBlock>IP del contrincante:</TextBlock>
+                    <TextBox Width="100" x:Name="txtIP" Text="{Binding IP}"></TextBox>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+        <Button Command="{Binding IniciarCommand}" CommandParameter="{Binding ElementName=rdbCrear, Path=IsChecked}" Name="btnConfirmar" Content="Confirmar">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=rdbCrear, Path=IsChecked}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"></Setter>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True"></Condition>
+                                <Condition Binding="{Binding ElementName=txtIP, Path=Text}" Value=""></Condition>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="False"></Setter>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </StackPanel>
 </Window>
