@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra"
         mc:Ignorable="d"
-        Title="Juego del gato" Height="232.301" Width="476.106">
+        Title="Juego del gato" Height="717.446" Width="819.458">
     <Window.DataContext>
         <local:JuegoGato></local:JuegoGato>
     </Window.DataContext>
@@ -19,50 +19,71 @@
             </Style.Triggers>
         </Style>
     </Window.Style>
-    <StackPanel>
-        <Label>Nombre:</Label>
-        <TextBox Text="{Binding NombreJugador1}"></TextBox>
-        <GroupBox Header="Seleccione que quiere hacer...">
-            <StackPanel>
-                <RadioButton Content="Crear partida nueva" x:Name="rdbCrear" IsChecked="True"></RadioButton>
-                <RadioButton Content="Unirse a partida" x:Name="rdbUnirse"></RadioButton>
-                <WrapPanel Name="ipJugador2">
-                    <WrapPanel.Style>
-                        <Style TargetType="WrapPanel">
-                            <Setter Property="Visibility" Value="Collapsed"></Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True">
-                                    <Setter Property="Visibility" Value="Visible"></Setter>
+    <StackPanel Margin="10">
+        <StackPanel DockPanel.Dock="Left" Width="460" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,10,10,10">
+            <Label FontFamily="COOLVETICA" FontSize="50" HorizontalAlignment="Center" Foreground="#5e4d4d" Padding="0">Nombre de usuario:</Label>
+            <Border Width="450" BorderBrush="#5e4d4d" BorderThickness="2" CornerRadius="30">
+                <TextBox Text="{Binding NombreJugador1}" Width="210" Height="65" FontSize="45" TextAlignment="Center" BorderThickness="0" Foreground="#5e4d4d" FontFamily="COOLVETICA"></TextBox>
+            </Border>
+            <TextBlock TextAlignment="Center" Foreground="#5e4d4d" FontFamily="COOLVETICA" FontSize="20" Margin="10">(Este nombre será visible para el otro jugador)</TextBlock>
+        </StackPanel>
+        <Image Source="/Resources/logo.png" Width="250" Height="160" VerticalAlignment="Top" HorizontalAlignment="Center"></Image>
+        <StackPanel DockPanel.Dock="Left" VerticalAlignment="Top" Margin="0,20,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="RadioButton">
+                    <Setter Property="FontFamily" Value="COOLVETICA"></Setter>
+                    <Setter Property="Foreground" Value="#5e4d4d"></Setter>
+                    <Setter Property="Selector.FontSize" Value="30"></Setter>
+                    <Setter Property="Selector.BorderThickness" Value="10"></Setter>
+                    <Setter Property="Selector.BorderBrush" Value="Salmon"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <GroupBox Header="Seleccione que quiere hacer..." FontFamily="COOLVETICA" FontSize="30" Foreground="#5e4d4d">
+                <StackPanel>
+                    <RadioButton Content="Crear partida nueva" x:Name="rdbCrear" IsChecked="True"></RadioButton>
+                    <RadioButton Content="Unirse a partida" x:Name="rdbUnirse"></RadioButton>
+                    <WrapPanel Name="ipJugador2">
+                        <WrapPanel.Style>
+                            <Style TargetType="WrapPanel">
+                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
+                        <TextBlock FontSize="25" Margin="5">IP del contrincante:</TextBlock>
+                        <Border BorderBrush="#5e4d4d" BorderThickness="2" CornerRadius="20" Width="300">
+                            <TextBox Width="260" BorderThickness="0" FontSize="25" x:Name="txtIP" Text="{Binding IP}" Foreground="#5e4d4d"></TextBox>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <Border Width="300" Height="70" CornerRadius="20" Background="#5e4d4d" Margin="5">
+            <Button Command="{Binding ConfirmarCommand}" CommandParameter="{Binding ElementName=rdbCrear, Path=IsChecked}" Cursor="Hand" Name="btnConfirmar" Content="Confirmar" Width="260" Background="#5e4d4d" FontSize="35" BorderThickness="0" Foreground="White" FontFamily="COOLVETICA">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"></Setter>
+                        <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=rdbCrear, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
+                                </DataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True"></Condition>
+                                        <Condition Binding="{Binding ElementName=txtIP, Path=Text}" Value=""></Condition>
+                                    </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="False"></Setter>
+                            </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </WrapPanel.Style>
-                    <TextBlock>IP del contrincante:</TextBlock>
-                    <TextBox Width="100" x:Name="txtIP" Text="{Binding IP}"></TextBox>
-                </WrapPanel>
-            </StackPanel>
-        </GroupBox>
-        <Button Command="{Binding ConfirmarCommand}" CommandParameter="{Binding ElementName=rdbCrear, Path=IsChecked}" Name="btnConfirmar" Content="Confirmar">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"></Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=rdbCrear, Path=IsChecked}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"></Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"></Setter>
-                        </DataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding ElementName=rdbUnirse, Path=IsChecked}" Value="True"></Condition>
-                                <Condition Binding="{Binding ElementName=txtIP, Path=Text}" Value=""></Condition>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="IsEnabled" Value="False"></Setter>
-                        </MultiDataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                    </Button.Style>
+                </Button>
+            </Border>
     </StackPanel>
 </Window>
