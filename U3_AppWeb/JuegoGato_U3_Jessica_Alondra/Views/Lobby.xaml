@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra.Views"
         mc:Ignorable="d"
-        Title="Juego del gato" Height="450" Width="800" Icon="\Resources\icontrol.ico">
+        Title="Conexión de jugadores" Height="220" Width="500" Icon="\Resources\icontrol.ico">
     <StackPanel>
-        <TextBlock>
+        <TextBlock FontFamily="COOLVETICA" FontSize="32" Margin="20,10" Foreground="#5e4d4d">
             Usuario:
-            <TextBlock Text="{Binding NombreJugador1}"></TextBlock>
+            <TextBlock Text="{Binding NombreJugador1}" FontSize="32" Margin="20,0" Foreground="#5e4d4d" FontFamily="COOLVETICA"></TextBlock>
         </TextBlock>
-        <TextBlock Text="{Binding Mensaje}" FontStyle="Italic"></TextBlock>
-        <Button IsEnabled="False" Content="Iniciar partida"></Button>
+        <TextBlock Text="{Binding Mensaje}" FontStyle="Italic" Margin="10,5,10,10" FontSize="20" TextWrapping="Wrap"></TextBlock>
+        <Button IsEnabled="False" Content="Iniciar partida" Width="200" Height="60" Background="#5e4d4d" BorderBrush="Transparent"
+                    FontFamily="COOLVETICA" FontSize="30" Foreground="#FFB8B8B8" ></Button>
     </StackPanel>
 </Window>
