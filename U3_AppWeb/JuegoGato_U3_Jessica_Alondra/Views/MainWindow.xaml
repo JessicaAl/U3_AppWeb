@@ -27,7 +27,7 @@
             </Border>
             <TextBlock TextAlignment="Center" Foreground="#5e4d4d" FontFamily="COOLVETICA" FontSize="20" Margin="10">(Este nombre será visible para el otro jugador)</TextBlock>
         </StackPanel>
-        <Image Source="/Resources/logo.png" Width="250" Height="160" VerticalAlignment="Top" HorizontalAlignment="Center"></Image>
+        <Image Source="/Resources/logos.png" Width="250" Height="160" VerticalAlignment="Top" HorizontalAlignment="Center"></Image>
         <StackPanel DockPanel.Dock="Left" VerticalAlignment="Top" Margin="0,20,0,0">
             <StackPanel.Resources>
                 <Style TargetType="RadioButton">
