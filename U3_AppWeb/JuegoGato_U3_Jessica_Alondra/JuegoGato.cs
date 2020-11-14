@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using JuegoGato_U3_Jessica_Alondra.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,10 @@ using System.Windows.Threading;
 
 namespace JuegoGato_U3_Jessica_Alondra
 {
+    public enum Movimiento { A1, A2, A3, B1, B2, B3, C1, C2, C3 }
+    public enum Comando { UsuarioEnviado }
     public class JuegoGato : INotifyPropertyChanged
     {
-        public enum Movimiento { A1, A2, A3, B1, B2, B3, C1, C2, C3 }
         public string NombreJugador1 { get; set; } = "Jugador";
         public string NombreJugador2 { get; set; }
 
@@ -70,6 +72,8 @@ namespace JuegoGato_U3_Jessica_Alondra
                 }
                 else
                 {
+                    NombreJugador2 = NombreJugador1;
+                    NombreJugador1 = null;
                     Mensaje = "Intentando conectar con el servidor en " + IP;
                     Actualizar("Mensaje");
                     await ConectarPartida();
@@ -94,15 +98,74 @@ namespace JuegoGato_U3_Jessica_Alondra
         {
             cliente = new ClientWebSocket();
             await cliente.ConnectAsync(new Uri($"ws://{IP}:1000/gato/"), CancellationToken.None);
-
+            webSocket = cliente;
+            RecibirComando();
         }
-        private void OnContext(IAsyncResult ar)
+        WebSocket webSocket;
+        private async void OnContext(IAsyncResult ar)
         {
-            //
+            var context = servidor.EndGetContext(ar);
+            if (context.Request.IsWebSocketRequest)
+            {
+                var listener = await context.AcceptWebSocketAsync(null);
+                webSocket = listener.WebSocket;
+                CambioMensaje("Cliente aceptado. Esperando la información del contrincante.");
+                EnviarComando(new DatoEnviado { Comando = Comando.UsuarioEnviado, Dato = NombreJugador1 });
+            }
+            else
+            {
+                context.Response.StatusCode = 404;
+                context.Response.Close();
+                servidor.BeginGetContext(OnContext, null);
+            }
+        }
+        private async void EnviarComando(DatoEnviado datos)
+        {
+            byte[] buffer;
+            var json = JsonConvert.SerializeObject(datos);
+            buffer = Encoding.UTF8.GetBytes(json);
+            await webSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, CancellationToken.None);
+        }
+        private async void RecibirComando()
+        {
+            byte[] buffer = new byte[1024];
+            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            string datosRecibidos = Encoding.UTF8.GetString(buffer, 0, result.Count);
+            var comando = JsonConvert.DeserializeObject<DatoEnviado>(datosRecibidos);
+            // Cliente
+            if (cliente != null)
+            {
+                switch (comando.Comando)
+                {
+                    case Comando.UsuarioEnviado:
+                        NombreJugador1 = (string)comando.Dato;
+                        CambioMensaje("Conectando con el jugador " + NombreJugador1);
+                        EnviarComando(new DatoEnviado { Comando = Comando.UsuarioEnviado, Dato = NombreJugador2 });
+                        break;
+                }
+            }
+            // Servidor
+            else
+            {
+
+            }
+        }
+        void CambioMensaje(string mensaje)
+        {
+            currentDispatcher.Invoke(new Action(() =>
+            {
+                Mensaje = mensaje;
+                Actualizar("Mensaje");
+            }));
         }
         void Actualizar(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public class DatoEnviado
+        {
+            public Comando Comando { get; set; }
+            public object Dato { get; set; }
         }
     }
 }
