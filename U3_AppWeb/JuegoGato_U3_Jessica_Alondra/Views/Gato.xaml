@@ -8,7 +8,7 @@
         Height="450" Width="500" Icon="/Resources\icontrol.ico">
     <StackPanel>
         <TextBlock FontFamily="COOLVETICA" FontSize="30" Margin="20,10" Foreground="#5e4d4d" 
-         HorizontalAlignment="Center" Text="Mensaje de ganador"></TextBlock>
+         HorizontalAlignment="Center" Text="//Mensaje de ganador"></TextBlock>
 
         <Grid >
             <Grid.ColumnDefinitions>
