@@ -5,24 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra.Views"
         mc:Ignorable="d"
-        Title="Juego del gato" Height="211.304" Width="899.13" Background="#8dbca0">
-    <StackPanel Margin="10">
-        <StackPanel.Resources>
-            <Style TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="COOLVETICA"></Setter>
-                <Setter Property="Foreground" Value="#5e4d4d"></Setter>
-                <Setter Property="FontSize" Value="30"></Setter>
-            </Style>
-        </StackPanel.Resources>
+        Title="Juego del gato" Height="450" Width="800" Icon="\Resources\icontrol.ico">
+    <StackPanel>
         <TextBlock>
             Usuario:
             <TextBlock Text="{Binding NombreJugador1}"></TextBlock>
         </TextBlock>
         <TextBlock Text="{Binding Mensaje}" FontStyle="Italic"></TextBlock>
-        <Border Width="300" Height="70" CornerRadius="20" Background="#5e4d4d" Margin="5">
-            <Button IsEnabled="False" Content="Iniciar partida" Width="260" Background="#5e4d4d" FontSize="35" BorderThickness="0" Foreground="White" FontFamily="COOLVETICA" Cursor="Hand" x:Name="btnIniciar">
-            </Button>
-        </Border>
-
+        <Button IsEnabled="False" Content="Iniciar partida"></Button>
     </StackPanel>
 </Window>
