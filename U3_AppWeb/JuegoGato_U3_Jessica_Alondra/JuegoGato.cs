@@ -111,6 +111,7 @@ namespace JuegoGato_U3_Jessica_Alondra
                 webSocket = listener.WebSocket;
                 CambioMensaje("Cliente aceptado. Esperando la información del contrincante.");
                 EnviarComando(new DatoEnviado { Comando = Comando.UsuarioEnviado, Dato = NombreJugador1 });
+                RecibirComando();
             }
             else
             {
@@ -147,7 +148,13 @@ namespace JuegoGato_U3_Jessica_Alondra
             // Servidor
             else
             {
-
+                switch (comando.Comando)
+                {
+                    case Comando.UsuarioEnviado:
+                        NombreJugador2 = (string)comando.Dato;
+                        CambioMensaje("Conectando con el jugador " + NombreJugador2);
+                        break;
+                }
             }
         }
         void CambioMensaje(string mensaje)
