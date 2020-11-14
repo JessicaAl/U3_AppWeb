@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra"
         mc:Ignorable="d"
-        Title="Tic Tac Toe" Height="670" Width="619.458" Icon="\Resources\icontrol.ico">
+        Title="Tic Tac Toe" Height="675" Width="619.458" Icon="/Resources\icontrol.ico">
     <Window.DataContext>
         <local:JuegoGato></local:JuegoGato>
     </Window.DataContext>

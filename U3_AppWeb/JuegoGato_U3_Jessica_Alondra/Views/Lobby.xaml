@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra.Views"
         mc:Ignorable="d"
-        Title="Conexión de jugadores" Height="220" Width="500" Icon="\Resources\icontrol.ico">
+        Title="Conexión de jugadores" Height="240" Width="500" Icon="/Resources\icontrol.ico">
     <StackPanel>
         <TextBlock FontFamily="COOLVETICA" FontSize="32" Margin="20,10" Foreground="#5e4d4d">
             Usuario:

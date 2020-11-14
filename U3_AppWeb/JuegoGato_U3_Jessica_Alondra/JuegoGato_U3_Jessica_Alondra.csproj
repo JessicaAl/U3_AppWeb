@@ -76,8 +76,8 @@
     <Compile Include="Views\Lobby.xaml.cs">
       <DependentUpon>Lobby.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\vntJuego.xaml.cs">
-      <DependentUpon>vntJuego.xaml</DependentUpon>
+    <Compile Include="Views\Gato.xaml.cs">
+      <DependentUpon>Gato.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,7 +96,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\vntJuego.xaml">
+    <Page Include="Views\Gato.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
