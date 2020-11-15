@@ -6,7 +6,45 @@
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra.Views"
         mc:Ignorable="d"
         Title="VentanaGato" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <TextBlock Text="0:00" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top"></TextBlock>
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="ColumnDefinition">
+                    <Setter Property="Width" Value="70"></Setter>
+                </Style>
+                <Style TargetType="RowDefinition">
+                    <Setter Property="Height" Value="70"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="Black" BorderThickness="0,0,3,3"></Border>
+            <Border BorderBrush="Black" BorderThickness="3,0,3,3" Grid.Column="1"></Border>
+            <Border BorderBrush="Black" BorderThickness="3,0,0,3" Grid.Column="2"></Border>
+            <Border BorderBrush="Black" BorderThickness="0,3,3,3" Grid.Row="1"></Border>
+            <Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="1"></Border>
+            <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="2" Grid.Row="1"></Border>
+            <Border BorderBrush="Black" BorderThickness="0,3,3,0" Grid.Row="2"></Border>
+            <Border BorderBrush="Black" BorderThickness="3,3,3,0" Grid.Column="1" Grid.Row="2"></Border>
+            <Border BorderBrush="Black" BorderThickness="3,3,0,0" Grid.Column="2" Grid.Row="2"></Border>
+            <Image Source="/Resources/o.png"></Image>
+            <Image Source="/Resources/o.png" Grid.Column="1"></Image>
+            <Image Source="/Resources/o.png" Grid.Column="2"></Image>
+            <Image Source="/Resources/o.png" Grid.Row="1"></Image>
+            <Image Source="/Resources/o.png" Grid.Column="1" Grid.Row="1"></Image>
+            <Image Source="/Resources/o.png" Grid.Column="2" Grid.Row="1"></Image>
+            <Image Source="/Resources/o.png" Grid.Row="2"></Image>
+            <Image Source="/Resources/o.png" Grid.Column="1" Grid.Row="2"></Image>
+            <Image Source="/Resources/o.png" Grid.Column="2" Grid.Row="2"></Image>
+        </Grid>
+    </DockPanel>
 </Window>
