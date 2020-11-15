@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra"
         mc:Ignorable="d"
-        Title="Tic Tac Toe" Height="675" Width="619.458" Icon="/Resources\icontrol.ico">
+        Title="Tic Tac Toe" Height="675" Width="619.458" Icon="/Resources\icontrol.ico" Background="#B2CAC3">
     <Window.DataContext>
         <local:JuegoGato></local:JuegoGato>
     </Window.DataContext>
@@ -23,7 +23,7 @@
         <StackPanel DockPanel.Dock="Left" Width="460" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,10,10,10">
             <Label FontFamily="COOLVETICA" FontSize="50" HorizontalAlignment="Center" Foreground="#5e4d4d" Padding="0">Nombre de usuario:</Label>
             <Border Width="450" BorderBrush="#5e4d4d" BorderThickness="2" CornerRadius="30">
-                <TextBox Text="{Binding NombreJugador1}" Width="210" Height="65" FontSize="45" TextAlignment="Center" BorderThickness="0" Foreground="#5e4d4d" FontFamily="COOLVETICA"></TextBox>
+                <TextBox Text="{Binding NombreJugador1}" Width="210" Height="65" FontSize="45" TextAlignment="Center" BorderThickness="0" Foreground="#5e4d4d" FontFamily="COOLVETICA" Background="#B2CAC3"></TextBox>
             </Border>
             <TextBlock TextAlignment="Center" Foreground="#5e4d4d" FontFamily="COOLVETICA" FontSize="20" Margin="10">(Este nombre será visible para el otro jugador)</TextBlock>
         </StackPanel>
@@ -35,7 +35,7 @@
                     <Setter Property="Foreground" Value="#5e4d4d"></Setter>
                     <Setter Property="Selector.FontSize" Value="30"></Setter>
                     <Setter Property="Selector.BorderThickness" Value="10"></Setter>
-                    <Setter Property="Selector.BorderBrush" Value="Salmon"></Setter>
+                    <Setter Property="Selector.BorderBrush" Value="Wheat"></Setter>
                 </Style>
             </StackPanel.Resources>
             <GroupBox Header="Seleccione que quiere hacer..." FontFamily="COOLVETICA" FontSize="30" Foreground="#5e4d4d">
