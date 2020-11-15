@@ -5,10 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra.Views"
         mc:Ignorable="d"
-        Title="VentanaGato" Height="450" Width="800">
+        Title="VentanaGato" Height="429" Width="414">
     <DockPanel>
-        <TextBlock Text="0:00" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top"></TextBlock>
-        <Grid>
+        <TextBlock Text="0:00" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top" FontSize="30"></TextBlock>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Grid HorizontalAlignment="Center">
             <Grid.Resources>
                 <Style TargetType="ColumnDefinition">
                     <Setter Property="Width" Value="70"></Setter>
@@ -46,5 +53,6 @@
             <Image Source="/Resources/o.png" Grid.Column="1" Grid.Row="2"></Image>
             <Image Source="/Resources/o.png" Grid.Column="2" Grid.Row="2"></Image>
         </Grid>
+
     </DockPanel>
 </Window>
