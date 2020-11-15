@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Height="450" Width="500" Icon="/Resources\icontrol.ico">
     <StackPanel>
-        <TextBlock FontFamily="COOLVETICA" FontSize="30" Margin="20,10" Foreground="#5e4d4d" 
-         HorizontalAlignment="Center" Text="//Mensaje de ganador"></TextBlock>
-
+      
+        <TextBlock FontFamily="COOLVETICA" FontSize="30" Margin="20,10" Foreground="#5e4d4d"
+         HorizontalAlignment="Center" Text="//Mensaje de ganador, se me borraron todos los cambios:("></TextBlock>
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -21,8 +21,9 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-        </Grid>
-        <Grid>
+          </Grid>
+      
+      <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
