@@ -5,15 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoGato_U3_Jessica_Alondra.Views"
         mc:Ignorable="d"
-        Title="VentanaGato" Height="429" Width="414">
+        Title="VentanaGato" Height="422" Width="411">
     <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="Border">
+                <Setter Property="Width" Value="150"></Setter>
+                <Setter Property="BorderThickness" Value="3"></Setter>
+                <Setter Property="BorderBrush" Value="Black"></Setter>
+                <Setter Property="CornerRadius" Value="20"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="120"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="TextAlignment" Value="Center"></Setter>
+            </Style>
+        </DockPanel.Resources>
         <TextBlock Text="0:00" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top" FontSize="30"></TextBlock>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border>
+                <TextBox></TextBox>
+            </Border>
+            <Border Grid.Column="2">
+                <TextBox></TextBox>
+            </Border>
+            <StackPanel Margin="10" Grid.Row="1">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock>Jugador 1</TextBlock>
+                <TextBlock>0</TextBlock>
+            </StackPanel>
+            <StackPanel Margin="10" Grid.Column="2" Grid.Row="1">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock>Jugador 1</TextBlock>
+                <TextBlock>0</TextBlock>
+            </StackPanel>
         </Grid>
         <Grid HorizontalAlignment="Center">
             <Grid.Resources>
@@ -22,6 +67,9 @@
                 </Style>
                 <Style TargetType="RowDefinition">
                     <Setter Property="Height" Value="70"></Setter>
+                </Style>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"></Setter>
                 </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
@@ -34,15 +82,15 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Border BorderBrush="Black" BorderThickness="0,0,3,3"></Border>
-            <Border BorderBrush="Black" BorderThickness="3,0,3,3" Grid.Column="1"></Border>
-            <Border BorderBrush="Black" BorderThickness="3,0,0,3" Grid.Column="2"></Border>
-            <Border BorderBrush="Black" BorderThickness="0,3,3,3" Grid.Row="1"></Border>
-            <Border BorderBrush="Black" BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="1"></Border>
-            <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="2" Grid.Row="1"></Border>
-            <Border BorderBrush="Black" BorderThickness="0,3,3,0" Grid.Row="2"></Border>
-            <Border BorderBrush="Black" BorderThickness="3,3,3,0" Grid.Column="1" Grid.Row="2"></Border>
-            <Border BorderBrush="Black" BorderThickness="3,3,0,0" Grid.Column="2" Grid.Row="2"></Border>
+            <Border BorderThickness="0,0,3,3"></Border>
+            <Border BorderThickness="3,0,3,3" Grid.Column="1"></Border>
+            <Border BorderThickness="3,0,0,3" Grid.Column="2"></Border>
+            <Border BorderThickness="0,3,3,3" Grid.Row="1"></Border>
+            <Border BorderThickness="3,3,3,3" Grid.Column="1" Grid.Row="1"></Border>
+            <Border BorderThickness="3,3,0,3" Grid.Column="2" Grid.Row="1"></Border>
+            <Border BorderThickness="0,3,3,0" Grid.Row="2"></Border>
+            <Border BorderThickness="3,3,3,0" Grid.Column="1" Grid.Row="2"></Border>
+            <Border BorderThickness="3,3,0,0" Grid.Column="2" Grid.Row="2"></Border>
             <Image Source="/Resources/o.png"></Image>
             <Image Source="/Resources/o.png" Grid.Column="1"></Image>
             <Image Source="/Resources/o.png" Grid.Column="2"></Image>
